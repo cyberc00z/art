@@ -1,4 +1,9 @@
-## *Do you like ART? Art from 80's and 90's*
+<p align="center">
+<img src="ss.png" width="500px" height="500px"  />
+</p>
+
+
+## *Art from 80's and 90's*
 
 *This repo contains the art work which you can use in you terminal.*
 
