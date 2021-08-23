@@ -1,0 +1,44 @@
+#!/usr/bin/env python3
+
+import os, sys
+import json
+from requests import get
+from bs4 import BeautifulSoup
+
+class Extractor:
+
+    def __init__(self, url: str):
+        self.__url = url
+    
+    def _send_request(self) -> BeautifulSoup:
+        reqs = get(self.__url)
+        soup = BeautifulSoup(reqs.text, 'html.parser')
+        return soup
+    
+    def save_results(self, response: BeautifulSoup) -> None:
+        urls = []
+        for link in response.find_all('a'):
+              #print(f"[*] Link: {link.get('href')}")
+              json_format = {
+                   "url" : f"http://artscene.textfiles.com/ansi/unsorted/" + f"{link.get('href')}"
+              }
+              json_data = []
+              #print(json_format)
+              with open ('url.json','w') as fp:
+                  
+                   #line = json_data.extend([json_format])
+                   #json_line = json.dumps(line, indent=1)
+                   #print(json_line)
+                   #json_data.append(json_format)
+                   #fp.write(str(json_data))
+                   #json_data.extend([json_format])
+                   #print(json_data)
+                   #fp.write(data)
+                   #fp.write('\n')
+              #with open ('url.json', 'w') as f:
+                    
+
+url = 'http://artscene.textfiles.com/ansi/unsorted/'
+extractor = Extractor(url)
+response = extractor._send_request()
+extractor.save_results(response)
