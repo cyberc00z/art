@@ -2,10 +2,6 @@
 
 *This repo contains the art work which you can use in you terminal.*
 
-```
-curl -s http:////artscene.textfiles.com/ansi/unsorted/aatiger.ans | pv -q -L 9600
-
-```
 
 ```
 1. Run the  build scipt to create url's json file
