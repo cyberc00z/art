@@ -1,0 +1,4 @@
+#!/bin/bash
+
+python3 build && python3 art
+
