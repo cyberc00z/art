@@ -1,0 +1,19 @@
+#!/usr/bin/env python3
+
+import os
+import json
+
+Kword = input("Enter the Keyword : " )
+
+def main():
+   data = json.loads(open ('urls.json').read())
+   for k in data:
+        for u in k.values():
+               if Kword in u:
+                    print(os.system(u))
+                    return True
+   
+   print("Art for this Query  not found!")
+
+if __name__ == '__main__':
+   main() 
