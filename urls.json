@@ -1,0 +1,35 @@
+[
+	{
+	"url": "curl -s http://artscene.textfiles.com/ansi/unsorted/mci.lst | pv -q -L 9600"
+        },
+	{
+		"url":"curl -s http://artscene.textfiles.com/ansi/unsorted/3_d.ans | pv -q -L 9600"
+	},
+	{
+		"url":"curl -s http://artscene.textfiles.com/ansi/unsorted/3_doodle.ans | pv -q -L 9600"
+	},
+	{
+		"url":"curl -s http://artscene.textfiles.com/ansi/unsorted/a-10.ans | pv -q -L 9600"
+	},
+	{
+		"url":"curl -s http://artscene.textfiles.com/ansi/unsorted/a_boy.ans | pv -q -L 9600"
+	},
+	{
+		"url":"curl -s http://artscene.textfiles.com/ansi/unsorted/40ishere.ans | pv -q -L 9600"
+	},
+	{
+	    "url":"curl -s http://artscene.textfiles.com/ansi/unsorted/abst-snr.ans | pv -q -L 9600"
+	},
+	{
+		"url":"curl -s http://artscene.textfiles.com/ansi/unsorted/aatiger.ans | pv -q -L 9600"
+	},
+	{
+		"url":"curl -s http://artscene.textfiles.com/ansi/unsorted/abstr3.ans | pv -q -L 9600"
+	},
+	{
+		"url":"curl -s http://artscene.textfiles.com/ansi/unsorted/advice.ans | pv -q -L 9600"
+	},
+  {
+    "url" : "curl -s http://artscene.textfiles.com/asciiart/cats | pv -q -L 9600  " 
+  }
+]
