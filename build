@@ -22,10 +22,17 @@ class Extractor:
               json_format = {
                    "url" : f"http://artscene.textfiles.com/ansi/unsorted/" + f"{link.get('href')}"
               }
-              json_data = []
-              print(json_format)
-              with open ('url.json', 'w') as fp:
-                   print(json.dumps(json_data.extend(json_format)),file=fp)
+              json_data = [json_format]
+              print(json_data)
+              
+              #with open ('url.json', 'r') as fp:
+               #   lines = fp.readlines()
+               #   lines[0] = str(json_data) + "\n"
+               #   with open ('url.json', 'w') as fp:
+               #        d = fp.writelines(lines)
+               #        print(d)
+
+                   
 
 url = 'http://artscene.textfiles.com/ansi/unsorted/'
 extractor = Extractor(url)
