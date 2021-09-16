@@ -1,12 +1,13 @@
 #!/usr/bin/env python3
+# -*- coding: utf-8 -*-
 
 import os, sys
 import json
+import random
 from requests import get
 from bs4 import BeautifulSoup
 
 class Extractor:
-
     def __init__(self, url: str):
         self.__url = url
     
@@ -22,19 +23,19 @@ class Extractor:
               json_format = {
                    "url" : f"http://artscene.textfiles.com/ansi/unsorted/" + f"{link.get('href')}"
               }
-              json_data = [json_format]
+              json_data = json_format
+              data = []
               print(json_data)
-              
-              #with open ('url.json', 'r') as fp:
-               #   lines = fp.readlines()
-               #   lines[0] = str(json_data) + "\n"
-               #   with open ('url.json', 'w') as fp:
-               #        d = fp.writelines(lines)
-               #        print(d)
-
-                   
+              #written_lines = 0
+              with open('links.json', 'w') as outfile:
+                   for link in list(json_data.items()):
+                       data = data.append(json.loads(str(link)))
+                       #json.dumps(link, outfile)
+                       #written_lines = written_lines + 1  
+                  
 
 url = 'http://artscene.textfiles.com/ansi/unsorted/'
+#print(url)
 extractor = Extractor(url)
 response = extractor._send_request()
 extractor.save_results(response)

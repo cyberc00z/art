@@ -9,7 +9,7 @@
 
 
 ```
-1. Run the  build scipt to create url's json file
+1. Run the  build script to create url's json file
  
  python3 build
  
