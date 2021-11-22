@@ -4,4 +4,3 @@ curl -s https://artscene.textfiles.com/ansi/unsorted/1701.ans | pv -q -L 9600
 
 python3 build
 python3 art
-
