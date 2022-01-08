@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 import smtplib
-
+from openpyxl import load_workbook
 #helper email address
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
@@ -9,8 +9,8 @@ from email.mime.base import MIMEBase
 from email import encoders
 import sys
 import yaml
-import pandas as pd
 import time
+from yaml.loader import FullLoader, Loader
 #send credentials
 
 ##load credentials from yaml file
@@ -20,57 +20,54 @@ email_user = email_username['creds']['email_username']
 email_pass = yaml.load(open('creds.yml'), Loader=FullLoader)  # create a good password
 email_password = email_pass['creds']['email_password']
 
-#list of users to whom email is to be sent
-#save in email.xlsx file, 
 
-start = time.time()
-df = pd.read_excel("emails.xlsx")
-for file_number in range(1, 1500):
-    df.append(pd.read_excel(f"Dummy {file_number}.xlsx"))
-end = time.time()
-print("Excel file : ", end-start)
-
+# extract emails from xls file
+wb = load_workbook("email.xlsx")
+source = wb["Sheet1"]
+for emails_send in source['A']:
+     emails_send = emails_send.value
+     
 
 #load and read buffer and 
 #create a object names emails
 
-email_send = ['LIST OF EMAILS']
-subject = 'Sri Arbinduo Hive Adda'
-
-msg = MIMEMultipart()
+email_send = list(emails_send)
+print(type(email_send))
+assert isinstance(email_send, list)
+subject = 'Put Subject here'
+msg = MIMEMultipart('alternative')
 msg['From'] = email_user 
 
 #converting list of recipients into comma separated string
 msg['To'] = ", ".join(email_send)
 
-msg['Subject'] = subject
-body = 'EMAIL_BODY'
-msg.attach(MIMEText(body, 'plain'))
+msg['Subject'] = ""
+body = """<html>
+ 
+       <body>
+         <h1></h1>
+       </body>
+ 
+ </html>"""
+            
 
+
+msg.attach(MIMEText(body, 'html'))
+#msg.attach(MIMEText(template.render(),'html')
+#print(text)
 text = msg.as_string()
 
 try:
    server = smtplib.SMTP('smtp.gmail.com',587)
    server.starttls()
    server.login(email_user, email_password)
+   start = time.time()
    server.sendmail(email_user, email_send, text)
+   end = time.time()
+   print("Total time taken in sending emails : {}".format(end-start))
 except Exception as err:
    print(err)
    sys.exit(0)
 
 print("Exiting from here")
 server.quit()
-
-"""
-using html for Sending EMAILs with HTML Content
-
-"""
-body = """<html>
-        <body>
-          <p>Hi, <b>Freshers. This is the email from Sri Arbinduo College Hive Mind.</b></p>
-          <p>Write the inspiring stuff here!</p>
-        </body>
-</html>
-
-msg.attach(MIMEText(body,'html'))
-"""
